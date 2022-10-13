@@ -1,0 +1,17 @@
+RECAP ON REACT
+
+npx create-react-app nameOfApp
+npx create-react-app .
+
+- JS Library for making websites easier and faster
+- allows JSX to do DOM manipulation with HTML directly 
+Powerful - virtual DOM allws for optimising changes to the webpag
+
+JSX - react component looks like: 
+
+()=> <h1>Hello!</h1>
+
+()=> <div>
+    <p> Name:   {me.name}    </>
+    <p> Age: {me.age}    </p>
+    </div>

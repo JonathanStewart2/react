@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: orange;
+  font-family: Calibri;
+  text-shadow: 2px 2px gray;
 }
 
 .App-logo {
