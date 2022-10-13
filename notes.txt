@@ -24,3 +24,6 @@ person-child component
 Props are READ only
 
 create components -> probs and states folders
+
+
+STATES - Data that can change

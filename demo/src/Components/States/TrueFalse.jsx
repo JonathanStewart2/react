@@ -7,6 +7,7 @@ const TrueFalse = () => {
     return (
         <>
         <p>Value: {"" + btn}</p>
+        {btn?<p>TRUE</p>:<p>FALSE</p>}
         <button onClick={()=>setBtn(a=>!a)}>CLICK</button>
         </>
     )

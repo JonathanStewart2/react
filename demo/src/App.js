@@ -6,6 +6,8 @@ import Products from './Components/Props/Products.jsx';
 import MoreProps from './Components/Props/MoreProps.jsx';
 import Steps from './Components/States/MilesAhead.jsx';
 import TrueFalse from './Components/States/TrueFalse.jsx';
+import Counter from './Components/States/Counter.jsx';
+import Converter from './Components/States/Converter.jsx';
 
 
 //function App() {
@@ -13,6 +15,7 @@ const App = () => {
  
   return (
     <div className="App">
+      <Converter />
       <MyComponent />
        <Person />
        <ComponentWithProps />  
@@ -25,6 +28,7 @@ const App = () => {
         <MoreProps num={127} />
         <Steps />
         <TrueFalse />
+        <Counter />
     </div>
     );
 }
