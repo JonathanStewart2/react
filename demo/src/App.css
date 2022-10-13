@@ -1,8 +1,8 @@
 .App {
   text-align: center;
-  background-color: orange;
+  background-color: yellow;
   font-family: Calibri;
-  text-shadow: 2px 2px gray;
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }
 
 .App-logo {

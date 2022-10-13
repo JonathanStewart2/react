@@ -15,3 +15,12 @@ JSX - react component looks like:
     <p> Name:   {me.name}    </>
     <p> Age: {me.age}    </p>
     </div>
+
+
+PROPS ------
+Properties -eg. Person {name:, age:, address:,}
+App-Parent component: 
+person-child component
+Props are READ only
+
+create components -> probs and states folders

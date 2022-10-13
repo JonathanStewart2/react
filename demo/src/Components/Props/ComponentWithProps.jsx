@@ -1,7 +1,7 @@
 const ComponentWithProps = (props) => {
 
     return (
-        <h1>Hello, {props.name} {props.name2}</h1>
+        <h1>Hello, {props.name}</h1>
     );
 }
 
@@ -9,7 +9,7 @@ const PropComp = () => {
     return (
         <>
         <ComponentWithProps name="Anomander Rake"/>
-        <ComponentWithProps name2="Daseem Ultor"/>
+        <ComponentWithProps name="Daseem Ultor"/>
         </>
     )
 }
