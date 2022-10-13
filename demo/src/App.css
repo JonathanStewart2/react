@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: yellow;
+  background-color: rgb(219, 199, 255);
   font-family: Calibri;
   text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }

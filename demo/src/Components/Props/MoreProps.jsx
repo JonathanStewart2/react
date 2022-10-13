@@ -1,17 +1,12 @@
-const generateNum = (num) => {
-    let output = []
+const PowerProps = (props) =>{
+    let x = props.num*props.num;
 
-    for (let i = 0; i < num; i++){
-        output.push(<tr key={i}/>);
-    }
-    return output    
-}
-
-const main = (props) => {
-    //let num = props.num;
-    return(
-    <table>{generateNum(props.num).key}</table>
+    return (
+        <>
+        <p>{props.num} multiplied by itself is:</p>
+        <p>{x}</p>
+        </>
     )
 }
 
-export default main;
+export default PowerProps

@@ -1,13 +1,8 @@
 const Products = (props) => {
     
-    // const item = {
-    //     name: "Coke",
-    //     price: 2,
-    //     descript: "A drink"
-    // }
     return (
         <>
-        <p>Name: {props.name}</p>
+        <h1>Name: {props.name}</h1>
         <p>Price: {props.price}</p>
         <p>Description: {props.descript}</p>
         </>
@@ -17,4 +12,4 @@ const Products = (props) => {
 
 export default Products;
 
-//to send info to a further child prop: <{Child ..oProps}/>
+//to send info to a further child prop: <{Child ...Props}/>
