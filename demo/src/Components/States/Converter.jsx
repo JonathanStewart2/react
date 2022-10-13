@@ -12,7 +12,6 @@ const Converter = () => {
     const convert2BTC = async () => {
         const btcURL = "https://api.coindesk.com/v1/bpi/currentprice.json";
         const response = await axios.get(btcURL)
-
         setBtc(value / response.data.bpi.GBP.rate_float);
     }
 
@@ -22,7 +21,7 @@ const Converter = () => {
         <input type="number"value={value} onChange={changeHandler}/>
         <button onClick={()=>convert2BTC()}>Convert</button>
         <br/>
-        <p>{btc}</p>
+        <p>Converts to {btc} Bitcoins!</p>
         </>
     )
 }
