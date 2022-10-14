@@ -4,7 +4,6 @@ import axios from 'axios';
 const Converter = () => {
     const [value, setValue] = useState(0);
     let [btc, setBtc] = useState(0);
-    let [history, setHistory] = useState([]);
 
     const changeHandler = (event) => {
         setValue(parseFloat(event.target.value));
@@ -14,8 +13,6 @@ const Converter = () => {
         const btcURL = "https://api.coindesk.com/v1/bpi/currentprice.json";
         const response = await axios.get(btcURL)
         setBtc(value / response.data.bpi.GBP.rate_float);
-        setHistory({value: btc});
-        console.log(history);
     }
 
     return (
@@ -25,15 +22,8 @@ const Converter = () => {
         <button onClick={()=>convert2BTC()}>Convert</button>
         <br/>
         <p>Converts to {btc} Bitcoins!</p>
-        <br />
-        <h6>History</h6>
-        {history.map(output => (
-            <Output key={history.}
-        ))}
-
         </>
     )
 }
 
 export default Converter;
-
