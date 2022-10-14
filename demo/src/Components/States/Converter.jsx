@@ -2,20 +2,24 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Converter = () => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState();
     let [btc, setBtc] = useState(0);
     let [history, setHistory] = useState([]);
 
     const changeHandler = (event) => {
         setValue(parseFloat(event.target.value));
+
     }
 
     const convert2BTC = async () => {
         const btcURL = "https://api.coindesk.com/v1/bpi/currentprice.json";
         const response = await axios.get(btcURL)
-        setBtc(value / response.data.bpi.GBP.rate_float);
-        setHistory({value: btc});
-        console.log(history);
+        const convert = value / response.data.bpi.GBP.rate_float;
+        setBtc(convert);
+        const newHistory = history;
+        const subHistory = [value, convert]
+        newHistory.push(subHistory);
+        setHistory(newHistory);
     }
 
     return (
@@ -27,9 +31,11 @@ const Converter = () => {
         <p>Converts to {btc} Bitcoins!</p>
         <br />
         <h6>History</h6>
-        {history.map(output => (
-            <Output key={history.}
-        ))}
+        <ul>
+            {history.map(output => (
+               <li key={history+btc}>£{output[0]} = {output[1]}BTC</li>
+          ))}
+        </ul>
 
         </>
     )
