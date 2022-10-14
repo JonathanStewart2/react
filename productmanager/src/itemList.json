@@ -1,0 +1,22 @@
+[
+    {
+        "item": "apple",
+        "price": 0.61
+    },
+    {
+        "item": "milk",
+        "price": 1.18
+    },
+    {
+        "item": "bread",
+        "price": 0.99
+    },
+    {
+        "item": "coffee",
+        "price": 4.96
+    },
+    {
+        "item": "jam",
+        "price": 1.43
+    }
+]
