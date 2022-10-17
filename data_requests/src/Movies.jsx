@@ -1,37 +1,29 @@
 import { useState } from 'react';
 import axios from 'axios';
-const APIKEY = process.env.APIKEY
-const url=(`http://www.omdbapi.com/?apikey=[${APIKEY}]`)
 
 
 const FilmRequest = () => {
     const [request, setRequest] = useState("");
     const [film, setFilm] = useState("");
+    //const APIKEY = process.env.APIKEY;
+    const APIKEY = "2c54694"
 
-    // useEffect(() => {
-    //     const getMovie = async () => {
-    //         try {
-    //             const res = await axios.get(url);
-    //             console.log(res);
-    //             setFilm(res);
-    //         } catch(err) {
-    //             console.error("Error");
-    //         }
-    //     getMovie()
-    //     }
-    // }, [film]);
+
+
     const getMovie = async () => {
         try {
+            const url=("http://www.omdbapi.com/?apikey=" + APIKEY +"&t=" +request)
             const res = await axios.get(url);
-            console.log(res);
-            setFilm(res);
+            setFilm(res.data);
+            console.log(film)
         } catch(err) {
             console.error("Error");
-        }}
+        }};
    
 
     const changeHandler = (e) => {
-        setRequest(e.value);
+        setRequest(e.target.value);
+        console.log(e.target.value);
     }
 
     return (
@@ -41,10 +33,6 @@ const FilmRequest = () => {
             <input type="text" default="Film Title" value={request} onChange={changeHandler}/>
             <button onClick={()=>getMovie()}>Search</button>
         </div>
-        <div>
-            {film}
-        </div>
-
         </>
     )
 }
