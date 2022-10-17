@@ -1,5 +1,5 @@
 import './App.css';
-import FilmRequest from './Movies'
+import FilmRequest from './Movies.jsx';
 
 function App() {
   return (
