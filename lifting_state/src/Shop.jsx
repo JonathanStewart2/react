@@ -29,10 +29,6 @@ const Shop = () => {
         return sum 
     };
 
-    const checkBasket = (array) => {
-
-    }
-
     const addItem = (item) => {
         // create clones of states and new variables for items
         let newItem = item.item;
@@ -47,20 +43,30 @@ const Shop = () => {
             currentQuantity += 1
             cloneQuantity[index] = currentQuantity;
             setQuantity(cloneQuantity);
+            //update the totals array
+            let newTotal = cloneTotal[index] + newCost;
+            cloneTotal[index] = newTotal;
+            setTotal(cloneTotal);
+
         } else {
-            //item not in basket so can push "1" to quantity array
+            //item not in basket so can push item to basket
             cloneBasket.push(newItem);
             setBasket(cloneBasket);
+            //item not in basket so can push "1" to quantity array
             cloneQuantity.push(1);
-            console.log(quantity);
-            console.log(basket);
+            setQuantity(cloneQuantity);
+            // update totals array
+            cloneTotal.push(newCost);
+            setTotal(cloneTotal);
         }
-        // update Totals array
-        cloneTotal.push(newCost);
-        setTotal(cloneTotal);
         //update calculated total
         setTotalCalc(sumArray(total));
+        console.log("basket is " + basket);
+        console.log("total is " + total);
+        console.log("quantity is " + quantity);
+        console.log("totalcal is " + totalCalc);
     }
+
 
 
     const removeItem = (i) => {
@@ -83,7 +89,8 @@ const Shop = () => {
         cloneTotal.splice(i, 1);
         setTotal(cloneTotal);
         // recalculate the total
-        setTotalCalc(sumArray(total));
+        let sumOfTotal = sumArray(total);
+        setTotalCalc(sumOfTotal);
     }
 
     
@@ -104,7 +111,8 @@ const Shop = () => {
                     <p>
                     {
                     basket.map((item, i) => (
-                    <li>{item}  <button value={item} onClick={()=>removeItem(i)}>Remove</button> </li>)
+                    <li>{item} <br />
+                    Quantity: {quantity[i]} <button value={item} onClick={()=>removeItem(i)}>Remove</button> </li>)
                      )
                      }
                     </p>
