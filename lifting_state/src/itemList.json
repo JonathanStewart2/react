@@ -2,5 +2,9 @@
     {
         "item": "Archaon the Everchosen",
         "price": 
-    }
+    },
+    {
+        "item": "Nagash, Supreme Lord of the Undead",
+        "price": 80.00
+    },
 ]

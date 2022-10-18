@@ -1,15 +1,21 @@
 import { useState } from 'react';
 import Items from './Items.jsx';
+import Nav from './Nav.jsx';
 
 const Shop = () => {
     const [items, setItems] = useState([]);
     const [basket, setBasket] = useState([]);
     const [total, setTotal] = useState();
+    const [page, setPage] = useState('');
+
+    const pageHandler = ({target}) => {
+        console.log(target.value);
+        setPage(target.value);
+    }
 
     const addItem = ({target}) => {
         let cloneBasket = [...basket, target.value];
         setBasket(cloneBasket);
-        console.log(basket);
     }
 
     const removeItem = (i) => {
@@ -20,6 +26,7 @@ const Shop = () => {
     
     return (
         <>
+        <Nav />
         <table>
             <tr>
                 <th>Items</th>
@@ -27,7 +34,7 @@ const Shop = () => {
             </tr>
             <tr>
                 <td>
-                    <Items addItem={addItem}/>
+                    <Items page={page} addItem={addItem}/>
                 </td>
                 <td>
                 {
