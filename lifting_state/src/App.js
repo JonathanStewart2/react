@@ -1,12 +1,12 @@
+
 import './App.css';
-//import FilmRequest from './Movies.jsx';
-import SearchList from './searchable-list.jsx'
+import Shop from './Shop.jsx';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SearchList />
+        <Shop />
       </header>
     </div>
   );
