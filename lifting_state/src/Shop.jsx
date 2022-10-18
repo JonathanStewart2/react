@@ -6,11 +6,15 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Shop = () => {
-    const [items, setItems] = useState([]);
     const [basket, setBasket] = useState([]);
     const [total, setTotal] = useState([]);
     const [totalCalc, setTotalCalc] = useState();
     const [page, setPage] = useState('');
+
+
+    //QUANTITY EXPERIMENTATION - ADDING WORKS, NEED TO COMPLETE REMOVE AND SHOW QUANTITY
+    const [quantity, setQuantity] = useState([])
+
 
     const pageHandler = ({target}) => {
         console.log(target.value);
@@ -25,15 +29,33 @@ const Shop = () => {
         return sum 
     };
 
+    const checkBasket = (array) => {
+
+    }
+
     const addItem = (item) => {
-        //update Basket
+        // create clones of states and new variables for items
         let newItem = item.item;
-        let cloneBasket = [...basket];
-        cloneBasket.push(newItem);
-        setBasket(cloneBasket);
-        // update Totals array
         let newCost = item.price;
+        let cloneQuantity = quantity;
+        let cloneBasket = basket;
         let cloneTotal = total;
+        //update Basket
+        if (basket.includes(newItem)){
+            let index = basket.indexOf(newItem);
+            let currentQuantity = quantity[index];
+            currentQuantity += 1
+            cloneQuantity[index] = currentQuantity;
+            setQuantity(cloneQuantity);
+        } else {
+            //item not in basket so can push "1" to quantity array
+            cloneBasket.push(newItem);
+            setBasket(cloneBasket);
+            cloneQuantity.push(1);
+            console.log(quantity);
+            console.log(basket);
+        }
+        // update Totals array
         cloneTotal.push(newCost);
         setTotal(cloneTotal);
         //update calculated total
@@ -46,6 +68,16 @@ const Shop = () => {
         let cloneBasket = [...basket];
         cloneBasket.splice(i, 1);
         setBasket(cloneBasket);
+        // update quantity array
+        let cloneQuantity = quantity;
+        let currentQuantity = cloneQuantity[i];
+        if (currentQuantity - 1 === 0){
+            cloneQuantity.splice(i, 1)
+            setQuantity(cloneQuantity);
+        } else {
+            cloneQuantity[i] = (currentQuantity - 1);
+            setQuantity(cloneQuantity);
+        }
         //remove cost of item from total array
         let cloneTotal = total;
         cloneTotal.splice(i, 1);
