@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Shop = () => {
     const [basket, setBasket] = useState([]);
     const [total, setTotal] = useState([]);
-    const [totalCalc, setTotalCalc] = useState();
+    const [totalCalc, setTotalCalc] = useState(0);
     const [page, setPage] = useState('');
 
 
@@ -60,37 +60,46 @@ const Shop = () => {
             setTotal(cloneTotal);
         }
         //update calculated total
-        setTotalCalc(sumArray(total));
-        console.log("basket is " + basket);
-        console.log("total is " + total);
-        console.log("quantity is " + quantity);
-        console.log("totalcal is " + totalCalc);
+        setTotalCalc(sumArray(cloneTotal));
+        console.log("AFTER ADD basket is " + basket);
+        console.log("AFTER ADD total is " + total);
+        console.log("AFTER ADD quantity is " + quantity);
+        console.log("AFTER ADD totalcal is " + totalCalc);
     }
 
 
 
     const removeItem = (i) => {
-        //remove item from basket
-        let cloneBasket = [...basket];
-        cloneBasket.splice(i, 1);
-        setBasket(cloneBasket);
-        // update quantity array
+        let cloneBasket = basket;
         let cloneQuantity = quantity;
-        let currentQuantity = cloneQuantity[i];
-        if (currentQuantity - 1 === 0){
-            cloneQuantity.splice(i, 1)
+        let cloneTotal = total;
+        // if quantity == 1 then remove item from basket, quantity and totals
+        if (quantity[i] === 1){
+            //remove item from basket
+            cloneBasket.splice(i, 1);
+            setBasket(cloneBasket);
+            // remove item from quantity array
+            cloneQuantity.splice(i, 1);
             setQuantity(cloneQuantity);
+            // remove item from totals array
+            cloneTotal.splice(i, 1);
+            setQuantity(cloneTotal);
         } else {
+            // reduce amounts by 1 in quantity and reduce totals arrays
+            let currentQuantity = cloneQuantity[i];
             cloneQuantity[i] = (currentQuantity - 1);
             setQuantity(cloneQuantity);
+            let currentTotal = cloneTotal[i];
+            cloneTotal[i] = (currentTotal - (currentTotal/currentQuantity));
+            setQuantity(cloneTotal);
         }
-        //remove cost of item from total array
-        let cloneTotal = total;
-        cloneTotal.splice(i, 1);
-        setTotal(cloneTotal);
         // recalculate the total
-        let sumOfTotal = sumArray(total);
+        let sumOfTotal = sumArray(cloneTotal);
         setTotalCalc(sumOfTotal);
+        console.log("AFTER REMOVAL basket is " + basket);
+        console.log("AFTER REMOVAL total is " + total);
+        console.log("AFTER REMOVAL quantity is " + quantity);
+        console.log("AFTER REMOVAL totalcalc is " + totalCalc);
     }
 
     
