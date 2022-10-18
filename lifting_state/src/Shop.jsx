@@ -26,7 +26,7 @@ const Shop = () => {
     
     return (
         <>
-        <Nav />
+        <Nav pageHandler={pageHandler} />
         <table>
             <tr>
                 <th>Items</th>
