@@ -6,11 +6,15 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Shop = () => {
-    const [items, setItems] = useState([]);
     const [basket, setBasket] = useState([]);
     const [total, setTotal] = useState([]);
-    const [totalCalc, setTotalCalc] = useState();
+    const [totalCalc, setTotalCalc] = useState(0);
     const [page, setPage] = useState('');
+
+
+    //QUANTITY EXPERIMENTATION - ADDING WORKS, NEED TO COMPLETE REMOVE AND SHOW QUANTITY
+    const [quantity, setQuantity] = useState([])
+
 
     const pageHandler = ({target}) => {
         console.log(target.value);
@@ -26,32 +30,76 @@ const Shop = () => {
     };
 
     const addItem = (item) => {
-        //update Basket
+        // create clones of states and new variables for items
         let newItem = item.item;
-        let cloneBasket = [...basket];
-        cloneBasket.push(newItem);
-        setBasket(cloneBasket);
-        // update Totals array
         let newCost = item.price;
+        let cloneQuantity = quantity;
+        let cloneBasket = basket;
         let cloneTotal = total;
-        cloneTotal.push(newCost);
-        setTotal(cloneTotal);
+        //update Basket
+        if (basket.includes(newItem)){
+            let index = basket.indexOf(newItem);
+            let currentQuantity = quantity[index];
+            currentQuantity += 1
+            cloneQuantity[index] = currentQuantity;
+            setQuantity(cloneQuantity);
+            //update the totals array
+            let newTotal = cloneTotal[index] + newCost;
+            cloneTotal[index] = newTotal;
+            setTotal(cloneTotal);
+
+        } else {
+            //item not in basket so can push item to basket
+            cloneBasket.push(newItem);
+            setBasket(cloneBasket);
+            //item not in basket so can push "1" to quantity array
+            cloneQuantity.push(1);
+            setQuantity(cloneQuantity);
+            // update totals array
+            cloneTotal.push(newCost);
+            setTotal(cloneTotal);
+        }
         //update calculated total
-        setTotalCalc(sumArray(total));
+        setTotalCalc(sumArray(cloneTotal));
+        console.log("AFTER ADD basket is " + basket);
+        console.log("AFTER ADD total is " + total);
+        console.log("AFTER ADD quantity is " + quantity);
+        console.log("AFTER ADD totalcal is " + totalCalc);
     }
 
 
+
     const removeItem = (i) => {
-        //remove item from basket
-        let cloneBasket = [...basket];
-        cloneBasket.splice(i, 1);
-        setBasket(cloneBasket);
-        //remove cost of item from total array
+        let cloneBasket = basket;
+        let cloneQuantity = quantity;
         let cloneTotal = total;
-        cloneTotal.splice(i, 1);
-        setTotal(cloneTotal);
+        // if quantity == 1 then remove item from basket, quantity and totals
+        if (quantity[i] === 1){
+            //remove item from basket
+            cloneBasket.splice(i, 1);
+            setBasket(cloneBasket);
+            // remove item from quantity array
+            cloneQuantity.splice(i, 1);
+            setQuantity(cloneQuantity);
+            // remove item from totals array
+            cloneTotal.splice(i, 1);
+            setQuantity(cloneTotal);
+        } else {
+            // reduce amounts by 1 in quantity and reduce totals arrays
+            let currentQuantity = cloneQuantity[i];
+            cloneQuantity[i] = (currentQuantity - 1);
+            setQuantity(cloneQuantity);
+            let currentTotal = cloneTotal[i];
+            cloneTotal[i] = (currentTotal - (currentTotal/currentQuantity));
+            setQuantity(cloneTotal);
+        }
         // recalculate the total
-        setTotalCalc(sumArray(total));
+        let sumOfTotal = sumArray(cloneTotal);
+        setTotalCalc(sumOfTotal);
+        console.log("AFTER REMOVAL basket is " + basket);
+        console.log("AFTER REMOVAL total is " + total);
+        console.log("AFTER REMOVAL quantity is " + quantity);
+        console.log("AFTER REMOVAL totalcalc is " + totalCalc);
     }
 
     
@@ -72,7 +120,8 @@ const Shop = () => {
                     <p>
                     {
                     basket.map((item, i) => (
-                    <li>{item}  <button value={item} onClick={()=>removeItem(i)}>Remove</button> </li>)
+                    <li>{item} <br />
+                    Quantity: {quantity[i]} <button value={item} onClick={()=>removeItem(i)}>Remove</button> </li>)
                      )
                      }
                     </p>
