@@ -26,16 +26,15 @@ function Items({ page, addItem }) {
     return (
       <ul>
         {
-                        death.map((item) => (
-                          <li>
-                            {item.item}
-                            {' '}
-                            £
-                            {item.price}
-                            <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
-                          </li>
-                        ))
-                    }
+          death.map((item) => (
+            <li>
+              {item.item}
+              £
+              {item.price}
+              <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
+              </li>
+          ))
+        }
       </ul>
     );
   }
