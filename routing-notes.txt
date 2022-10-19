@@ -1,0 +1,60 @@
+ROUTING 
+-------
+npm i react-router-dom
+
+on App.js page ->
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+
+
+<Router>
+  <nav>
+    <Link to=href="/home"><button type="button">Home</button></Link>
+    <Link to=href="/about"> About </Link>
+    <Link to=href="/shop"> Shop </Link>
+  </nav>
+  <Routes>
+    <Route path="/home" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/shop" element={<Shop />} />
+  </Routes>
+</Router>
+
+
+----
+Navigation.jsx
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const Navigation = () = {
+    const [address, setAddress] = useState("");
+    const navigate = useNavigate();
+
+
+    return (
+        <>
+        <input type="text" value={address} onChange={e => setAddress(e.target.value)}/>
+        <button type="button" onClick={() => navigate(address)}>Go To</button>
+        </>
+    );
+}
+export default Navigation;
+
+----------------------
+PARAM EXAMPLE:
+
+const ParamsExample = () => {
+    const params = useParams();
+    console.log('PARAMS:', params);
+
+    return (
+        <p>
+          {`Param ${params.example}`}
+        </p>
+    );
+}
+
+
+on app.js file
+
+<Route path="/params/:example" element={<ParamsExample />} />
