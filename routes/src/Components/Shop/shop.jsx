@@ -77,10 +77,11 @@ function Shop() {
       cloneTotal.splice(i, 1);
       setQuantity(cloneTotal);
     } else {
-      // reduce amounts by 1 in quantity and reduce totals arrays
+      // reduce amounts by 1 in quantity
       const currentQuantity = cloneQuantity[i];
       cloneQuantity[i] = (currentQuantity - 1);
       setQuantity(cloneQuantity);
+      // reduce totals arrays
       const currentTotal = cloneTotal[i];
       cloneTotal[i] = (currentTotal - (currentTotal / currentQuantity));
       setQuantity(cloneTotal);
