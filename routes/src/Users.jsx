@@ -1,31 +1,43 @@
-import { useParams } from 'react';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 const Users = () => {
-    const {id} = useParams;
-    const [searchID, setSearchID] = useState("");
-    const [users, setUser] = useState([{
-        id: 0,
-        name: "unknown"
-    },{
-        id: 1,
-        name: "Cloud"
-    },
+    const params = useParams();
+    const [users, setUser] = useState([
     {
-        id: 2,
+        id: "0",
+        name: "unknown"
+     }, {
+        id: "1",
+        name: "Cloud"
+     }, {
+        id: "2",
+        name: "Sephiroth"
+     }, {
+        id: "3",
+        name: "Noctis"
+     }, {
+        id: "4",
         name: "Squall"
-    }
-])
+     }])
 
+    if (params.id) {
     return (
         <>
-        <form>
-            <label for="id">User ID:</label>
-            <input type="number" value="id"></input>
-            <button type="button">Log In</button>
-        </form>
+        <p>Welcome {users[params.id].name}</p>
+
         </>
-    )
+    )} else {
+        return (
+            <>
+            {
+                users.map((user) => (
+                <p><b>ID:</b> {user.id}.  <b>Name:</b> {user.name} </p>
+                ))
+            }
+            </>
+        )
+    }
 }
 
 export default Users;
