@@ -1,0 +1,7 @@
+npm i chromedriver selenium-webdriver
+
+mocha - test runner
+    -> describe / it
+
+chai - assertion library
+    -> expect
