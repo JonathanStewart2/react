@@ -12,7 +12,6 @@ import Movies from './Components/Movies/Movies';
 import Searchbar from './Components/Searchbar/searchable-list';
 import FilmDetails from './Components/Movies/FilmDetails';
 
-
 function App() {
   return (
     <div className="mainDiv">
