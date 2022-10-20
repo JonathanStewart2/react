@@ -1,4 +1,6 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 import {
   BrowserRouter as Router, Link, Routes, Route,
 } from 'react-router-dom';
@@ -7,18 +9,21 @@ import BTCconverter from './Components/convertBTC';
 import Shop from './Components/Shop/Shop';
 import Users from './Users';
 import Movies from './Components/Movies/Movies';
+import Searchbar from './Components/Searchbar/searchable-list';
 import FilmDetails from './Components/Movies/FilmDetails';
+
 
 function App() {
   return (
-    <div>
+    <div class="mainDiv">
       <Router>
-        <nav>
-          <Link to="/home"><button type="button">Home</button></Link>
-          <Link to="/convertBTC"><button type="button">BTC Converter</button></Link>
-          <Link to="/shop"><button type="button">Shop</button></Link>
-          <Link to="/users"><button type="button">Users</button></Link>
-          <Link to="/movies"><button type="button">Movies</button></Link>
+        <nav class="navClass">
+          <Link to="/home"><button className="btn btn-primary" type="button">Home</button></Link>
+          <Link to="/convertBTC"><Button variant="outline-warning" type="button">BTC Converter</Button></Link>
+          <Link to="/shop"><Button variant="info" type="button">Shop</Button></Link>
+          <Link to="/users"><Button variant="secondary" type="button">Users</Button></Link>
+          <Link to="/movies"><Button variant="outline-success" type="button">Movies</Button></Link>
+          <Link to="/search"><Button variant="dark" type="button" >Search</Button></Link>
           {/* <Navigation /> */}
         </nav>
         <Routes>
@@ -29,6 +34,7 @@ function App() {
           <Route path="/users/:id" element={<Users />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movies/:id" element={<FilmDetails />} />
+          <Route path="/search" element={<Searchbar />} />
         </Routes>
       </Router>
     </div>

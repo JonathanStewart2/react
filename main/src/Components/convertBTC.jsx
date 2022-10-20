@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Logo from './btclogo.png'
 
 function Converter() {
   const [value, setValue] = useState(0);
@@ -22,11 +23,12 @@ function Converter() {
       <button type="button" onClick={() => convert2BTC()}>Convert</button>
       <br />
       <p>
-        Converts to
+        Converts to 
         {btc}
         {' '}
         Bitcoins!
       </p>
+      <img src={Logo} width={250} height={250}></img>
     </>
   );
 }

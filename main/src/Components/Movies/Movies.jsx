@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Film from './Film';
+import { Button, Container, Col, Row } from 'react-bootstrap';
 
 function Movies() {
   const [request, setRequest] = useState('');
@@ -27,19 +28,23 @@ function Movies() {
         <h3>Film Search</h3>
         <input type="text" default="Film Title" value={request} onChange={changeHandler} />
         <button type="button" onClick={() => getMovie()}>Search</button>
+        <Container>
+          <Row >
         {
             films.map((film) => (
-              <>
+              <Col> 
                 <Film
                   id={film.imdbID}
                   title={film.Title}
                   year={film.Year}
                   poster={film.Poster}
                 />
-                <Link to={`./${film.imdbID}`}><button type="button">Details</button></Link>
-              </>
+                <Link to={`./${film.imdbID}`}><Button variant="primary" type="button">Details</Button></Link>
+              </Col>
             ))
         }
+          </Row>
+        </Container>
       </>
     );
   }

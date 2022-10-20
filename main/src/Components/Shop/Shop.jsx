@@ -89,7 +89,7 @@ const Shop = () => {
                       {name}
                       <br />
                       Quantity: {quantity}<br />
-                      Price: {price * quantity}<br />
+                      Price: £{price * quantity}<br />
                       <br />
                       <button type="button" value={-1} onClick={() => changeQuantity(i, -1)}>-1</button>
                       <button type="button" value={i} onClick={() => removeItem(i)}>Remove</button>
