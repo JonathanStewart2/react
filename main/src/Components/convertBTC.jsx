@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Logo from './btclogo.png'
+import { Button } from 'react-bootstrap';
 
 function Converter() {
   const [value, setValue] = useState(0);
@@ -20,10 +21,11 @@ function Converter() {
     <>
       <h3>GBP to Bitcoin Converter</h3>
       <input type="number" value={value} onChange={changeHandler} />
-      <button type="button" onClick={() => convert2BTC()}>Convert</button>
+      <Button variant="warning" type="button" onClick={() => convert2BTC()}>Convert</Button>
       <br />
       <p>
-        Converts to 
+        Converts to
+        {' '}
         {btc}
         {' '}
         Bitcoins!

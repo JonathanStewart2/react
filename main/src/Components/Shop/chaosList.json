@@ -2,16 +2,16 @@
     {
         "item": "Archaon the Everchosen",
         "price": 100.00,
-        "image": "/imgs/archaon.png"
+        "image": "./imgs/archaon.png"
     },
     {
         "item": "Be'lakor the Dark Master",
         "price": 80.00,
-        "image": ""
+        "image": "./imgs/belakor.jpg"
     },
     {
         "item": "Darkoath Chieftan",
         "price": 20.00,
-        "image": ""
+        "image": "./imgs/darkoath.jpeg"
     }
 ]

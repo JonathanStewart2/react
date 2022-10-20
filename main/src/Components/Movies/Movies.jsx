@@ -29,20 +29,21 @@ function Movies() {
         <input type="text" default="Film Title" value={request} onChange={changeHandler} />
         <button type="button" onClick={() => getMovie()}>Search</button>
         <Container>
-          <Row >
-        {
-            films.map((film) => (
-              <Col> 
-                <Film
-                  id={film.imdbID}
-                  title={film.Title}
-                  year={film.Year}
-                  poster={film.Poster}
-                />
-                <Link to={`./${film.imdbID}`}><Button variant="primary" type="button">Details</Button></Link>
-              </Col>
-            ))
-        }
+          <Row xs={'auto'} md={'auto'} className="g-4">
+            {
+              films.map((film) => (
+                <Col>
+
+                  <Film
+                    id={film.imdbID}
+                    title={film.Title}
+                    year={film.Year}
+                    poster={film.Poster}
+                  />
+                  <Link to={`./${film.imdbID}`}><Button variant="primary" type="button">Details</Button></Link>
+                </Col>
+              ))
+            }
           </Row>
         </Container>
       </>

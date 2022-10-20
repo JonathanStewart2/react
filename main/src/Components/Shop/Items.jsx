@@ -2,25 +2,27 @@ import chaos from './chaosList.json';
 import order from './orderList.json';
 import destruction from './destructionList.json';
 import death from './deathList.json';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 function Items({ page, addItem }) {
   if (page === 'Chaos') {
     return (
-      <ul>
+      <>
         {
-                        chaos.map((item) => (
-                          <li>
-                            {item.item}
-                            {' '}
-                            £
-                            {item.price}
-                            <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
-                            <br />
-                            <img src={item.image} alt={item.item} />
-                          </li>
-                        ))
-                    }
-      </ul>
+          chaos.map((item) => (
+            <Card>
+              <Card.Img variant="top" src={item.image} />
+              <Card.Body>
+                <Card.Title>{item.item}</Card.Title>
+                <Card.Text>£{item.price}</Card.Text>
+                <Button variant="primary" type="button" value={item} onClick={() => addItem(item)}>Buy</Button>
+              </Card.Body>
+            </Card >
+          ))
+        }
+      </>
+
     );
   } if (page === 'Death') {
     return (
@@ -32,7 +34,7 @@ function Items({ page, addItem }) {
               £
               {item.price}
               <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
-              </li>
+            </li>
           ))
         }
       </ul>
@@ -42,32 +44,32 @@ function Items({ page, addItem }) {
     return (
       <ul>
         {
-                        order.map((item) => (
-                          <li>
-                            {item.item}
-                            {' '}
-                            £
-                            {item.price}
-                            <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
-                          </li>
-                        ))
-                    }
+          order.map((item) => (
+            <li>
+              {item.item}
+              {' '}
+              £
+              {item.price}
+              <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
+            </li>
+          ))
+        }
       </ul>
     );
   } if (page === 'Destruction') {
     return (
       <ul>
         {
-                        destruction.map((item) => (
-                          <li>
-                            {item.item}
-                            {' '}
-                            £
-                            {item.price}
-                            <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
-                          </li>
-                        ))
-                    }
+          destruction.map((item) => (
+            <li>
+              {item.item}
+              {' '}
+              £
+              {item.price}
+              <button type="button" value={item} onClick={() => addItem(item)}>Buy</button>
+            </li>
+          ))
+        }
       </ul>
     );
   }

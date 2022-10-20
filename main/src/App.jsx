@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+import { Button, Dropdown } from 'react-bootstrap';
 import {
   BrowserRouter as Router, Link, Routes, Route,
 } from 'react-router-dom';
@@ -15,15 +15,23 @@ import FilmDetails from './Components/Movies/FilmDetails';
 
 function App() {
   return (
-    <div class="mainDiv">
+    <div className="mainDiv">
       <Router>
-        <nav class="navClass">
-          <Link to="/home"><button className="btn btn-primary" type="button">Home</button></Link>
-          <Link to="/convertBTC"><Button variant="outline-warning" type="button">BTC Converter</Button></Link>
-          <Link to="/shop"><Button variant="info" type="button">Shop</Button></Link>
-          <Link to="/users"><Button variant="secondary" type="button">Users</Button></Link>
-          <Link to="/movies"><Button variant="outline-success" type="button">Movies</Button></Link>
-          <Link to="/search"><Button variant="dark" type="button" >Search</Button></Link>
+        <nav className="navClass">
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-primary">
+              Basics
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/home"> Home</Dropdown.Item>
+              <Dropdown.Item href="/search">Search</Dropdown.Item>
+              <Dropdown.Item href="/users">Users</Dropdown.Item>
+            </Dropdown.Menu>
+
+            <Link to="/convertBTC"><Button variant="outline-warning" type="button">BTC Converter</Button></Link>
+            <Link to="/shop"><Button variant="info" type="button">Shop</Button></Link>
+            <Link to="/movies"><Button variant="outline-success" type="button">Movies</Button></Link>
+          </Dropdown>
           {/* <Navigation /> */}
         </nav>
         <Routes>
@@ -37,7 +45,7 @@ function App() {
           <Route path="/search" element={<Searchbar />} />
         </Routes>
       </Router>
-    </div>
+    </div >
   );
 }
 
